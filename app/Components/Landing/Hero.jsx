@@ -5,7 +5,6 @@ import { motion } from 'framer-motion'
 import Navbar from './Navbar'
 import Content from './Content'
 import Svg from './Svg'
-import SmallNavbar from './SmallNavbar'
 
 const Hero = () => {
   const [animationComplete, setAnimationComplete] = useState(false)
@@ -37,21 +36,8 @@ const Hero = () => {
         backgroundRepeat: 'no-repeat',
       }}
     >
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={navbarVariants}
-        className="hidden lg:block"
-      >
+      <motion.div initial="hidden" animate="visible" variants={navbarVariants}>
         <Navbar />
-      </motion.div>
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={navbarVariants}
-        className="lg:hidden"
-      >
-        <SmallNavbar />
       </motion.div>
 
       <div className="flex">

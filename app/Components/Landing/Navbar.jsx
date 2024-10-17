@@ -19,6 +19,7 @@ const Navbar = () => {
               alt="Logo"
               width={150}
               height={50}
+              layout="responsive"
               style={{
                 objectFit: 'cover',
               }}
@@ -45,7 +46,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div>
-          <button className="border border-white text-[20px] py-2 px-3 rounded-[25px] lg:rounded-3xl  bg-[#24212197] hover:bg-[#242121c0]">
+          <button className="border border-white hidden lg:block text-[20px] py-2 px-3 rounded-[25px] lg:rounded-3xl  bg-[#24212197] hover:bg-[#242121c0]">
             <a href="#contact">Contact Me</a>
           </button>
         </div>

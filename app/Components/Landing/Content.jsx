@@ -7,7 +7,7 @@ import { FaTwitter } from 'react-icons/fa'
 const Content = () => {
   return (
     <section>
-      <div className="lg:mx-20 text-left mt-24">
+      <div className="lg:mx-20 text-left mt-24 z-0">
         <h1
           className="lg:text-[130.66px] text-[50px] ml-5 lg:ml-28 leading-[1.1] font-bold px-2"
           style={{ fontFamily: 'var(--font-k2d)', fontWeight: 300 }}
