@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Personal Portfolio Website
+
+This is a **responsive portfolio website** I built using **Next.js**, styled with **Tailwind CSS**, and animated with **Framer Motion**. It showcases my skills, projects, and experience as a web developer. The site is deployed on **Vercel** for fast performance and smooth user experience.
+
+## Features
+
+- **Responsive Design**: The website adapts beautifully to various screen sizes.
+- **Framer Motion Animations**: Smooth and modern animations to enhance user experience.
+- **Dynamic Content**: Integrated email service to allow visitors to contact me directly.
+- **Vercel Deployment**: Deployed on Vercel for excellent performance and scalability.
+
+## Packages Used
+
+### Dependencies
+
+- **[Next.js](https://nextjs.org/)**: Framework for React with built-in features like SSR, routing, and more.
+- **[React](https://reactjs.org/)**: JavaScript library for building user interfaces.
+- **[Framer Motion](https://www.framer.com/motion/)**: A powerful animation library for React.
+- **[Tailwind CSS](https://tailwindcss.com/)**: Utility-first CSS framework for custom styling.
+- **[EmailJS](https://www.emailjs.com/)**: Service to send emails directly from the client side.
+- **[Lucide Icons](https://lucide.dev/)**: Beautiful and customizable React icons.
+- **[React Icons](https://react-icons.github.io/react-icons/)**: Popular icons as React components.
+
+### Dev Dependencies
+
+- **[ESLint](https://eslint.org/)**: A linting tool to maintain code quality and consistency.
+- **[Tailwind CSS](https://tailwindcss.com/)**: Integrated for seamless styling using utility classes.
+- **[PostCSS](https://postcss.org/)**: A tool to transform CSS with JavaScript.
+- **[Next.js ESLint Config](https://nextjs.org/docs/basic-features/eslint)**: Next.js specific ESLint rules.
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- **Node.js**: Make sure you have Node.js installed on your system. You can download it [here](https://nodejs.org/).
+
+### Installation
+
+1. Clone this repository:
+
+   ```bash
+   git clone https://github.com/your-username/portfolio.git
+   cd portfolio
+   ```
+
+2. Install Dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open your web browser and navigate to [http://localhost:3000](http://localhost:3000) to view the website.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Linting
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+To check and fix code formatting issues, run:
 
-## Learn More
+```bash
+npm run lint
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Contributions ✨
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This repository is intended for personal learning, but if you find any issues or have suggestions for improvement, feel free to open an issue or submit a pull request!
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. Fork the repository.
 
-## Deploy on Vercel
+2. Create a new branch for your feature:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```bash
+   git checkout -b feature/YourFeature
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+3. Commit your changes:
+
+   ```bash
+   git commit -m 'Add some feature'
+   ```
+
+4. Push to the branch:
+
+   ```bash
+   git push origin feature/YourFeature
+   ```
+
+5. Open a pull request, and I'll review your contribution!
+
+## Acknowledgments 👏
+
+A huge thank you to the NextJs community and various online resources that have been invaluable in my learning journey!
