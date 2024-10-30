@@ -12,7 +12,7 @@ const SmallCard = ({ imageUrl, title, description, githubUrl, variants }) => {
       variants={variants}
       transition={{ duration: 0.8 }}
     >
-      <div className="max-w-sm w-[90%] mx-auto bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 my-3">
+      <div className="max-w-sm w-[90%] mx-auto bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800/40 dark:border-gray-700 my-3">
         <a href="#">
           <Image
             src={imageUrl}
@@ -23,12 +23,12 @@ const SmallCard = ({ imageUrl, title, description, githubUrl, variants }) => {
           />
         </a>
         <div className="p-5">
-          <a href="#">
-            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <a href={githubUrl}>
+            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white hover:text-[#CCF6F0] transition-colors duration-300">
               {title}
             </h5>
           </a>
-          <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+          <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 hover:text-zinc-300 transition-colors duration-300">
             {description}
           </p>
           <a

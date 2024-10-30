@@ -1,10 +1,9 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import ProjectHeader from './ProjectHeader';
-import ProjectCard from './ProjectCard';
-import { projectsData } from './ProjectData';
-import SmallCard from './SmallCard';
-
+import React from 'react'
+import { motion } from 'framer-motion'
+import ProjectHeader from './ProjectHeader'
+import ProjectCard from './ProjectCard'
+import { projectsData } from './ProjectData'
+import SmallCard from './SmallCard'
 
 const Projects = () => {
   return (
@@ -31,12 +30,12 @@ const Projects = () => {
         </div>
         <div className="lg:hidden my-2">
           {projectsData.map((project, index) => (
-            <SmallCard key = {index}  {...project} />
+            <SmallCard key={index} {...project} />
           ))}
         </div>
       </motion.div>
     </section>
-  );
-};
+  )
+}
 
-export default Projects;
+export default Projects
