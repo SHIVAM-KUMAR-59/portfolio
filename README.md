@@ -1,3 +1,5 @@
+<img src="https://media.licdn.com/dms/image/v2/D4E22AQHz7X3MhThdbQ/feedshare-shrink_800/feedshare-shrink_800/0/1729181153969?e=1733356800&v=beta&t=Shq7U-pqDu4GGTTSGTGICqNW0jmvlb4jbrhrTZ_SrPE" alt="Landing Page Image" style="width: 100%; border-radius: 10px"/>
+
 # Personal Portfolio Website
 
 This is a **responsive portfolio website** I built using **Next.js**, styled with **Tailwind CSS**, and animated with **Framer Motion**. It showcases my skills, projects, and experience as a web developer. The site is deployed on **Vercel** for fast performance and smooth user experience.
