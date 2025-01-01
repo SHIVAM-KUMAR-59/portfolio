@@ -1,4 +1,4 @@
-<img src="https://media.licdn.com/dms/image/v2/D4E22AQHz7X3MhThdbQ/feedshare-shrink_800/feedshare-shrink_800/0/1729181153969?e=1733356800&v=beta&t=Shq7U-pqDu4GGTTSGTGICqNW0jmvlb4jbrhrTZ_SrPE" alt="Landing Page Image" style="width: 100%; border-radius: 10px"/>
+<img src="./public/Home.png" alt="Landing Page Image" style="width: 100%; border-radius: 10px"/>
 
 # Personal Portfolio Website
 
