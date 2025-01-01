@@ -11,11 +11,11 @@ const slideInFromRight = {
 
 export const projectsData = [
   {
-    title: 'AI Integrated Chatbot',
+    title: 'Chat App',
     description:
-      'This is a conversational AI chat bot built using modern web technologies like NextJs, TypeScript, Tailwind CSS for the frontend, and Convex and Clerk for backend services. The chat bot can answer questions and have a normal conversation with users.',
+      'This is a full-stack chat application that supports real-time messaging, user authentication, and both one-on-one and group chats. The app is built using Node.js, Express, MongoDB for the backend, and utilizes WebSocket for real-time communication.',
     imageUrl: '/Chatbot.png',
-    githubUrl: 'https://github.com/SHIVAM-KUMAR-59/Chat-Bot',
+    githubUrl: 'https://github.com/SHIVAM-KUMAR-59/Chat-App',
     isReversed: false,
     variants: slideInFromLeft,
     margin: 'ml-3',
