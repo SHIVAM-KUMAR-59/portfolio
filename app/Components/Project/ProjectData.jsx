@@ -11,6 +11,16 @@ const slideInFromRight = {
 
 export const projectsData = [
   {
+    title: 'Sooth Mind',
+    description:
+      'The Mental Well-being Platform is a web application designed to support users in tracking and enhancing their mental health. It enables users to write daily journal entries, which are analyzed using advanced AI models from Hugging Face. The platform evaluates the mood reflected in the entries and provides tailored feedback.',
+    imageUrl: '/LandingPage.png',
+    githubUrl: 'https://github.com/SHIVAM-KUMAR-59/sooth-mind',
+    isReversed: true,
+    variants: slideInFromRight,
+    margin: 'mr-3',
+  },
+  {
     title: 'Chat App',
     description:
       'This is a full-stack chat application that supports real-time messaging, user authentication, and both one-on-one and group chats. The app is built using Node.js, Express, MongoDB for the backend, and utilizes WebSocket for real-time communication.',
@@ -19,15 +29,5 @@ export const projectsData = [
     isReversed: false,
     variants: slideInFromLeft,
     margin: 'ml-3',
-  },
-  {
-    title: 'Blog App',
-    description:
-      'This is a full-stack blog application built using the MERN stack (MongoDB, Express.js, React.js, Node.js). The application provides a platform for users to create, read, update, and delete blog posts while managing user authentication and profiles.',
-    imageUrl: '/Blog-App.png',
-    githubUrl: 'https://github.com/SHIVAM-KUMAR-59/Blog-App',
-    isReversed: true,
-    variants: slideInFromRight,
-    margin: 'mr-3',
   },
 ]
