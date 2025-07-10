@@ -2,7 +2,6 @@ import React from 'react'
 import DotGrid from './DotGrid'
 import { motion } from 'framer-motion'
 
-// Animations
 const scaleUp = {
   hidden: { scale: 0.8, opacity: 0 },
   visible: { scale: 1, opacity: 1 },
