@@ -33,7 +33,7 @@ A modern, dark-themed portfolio website built with Next.js 14, featuring smooth 
 
 ## Project Structure
 
-\`\`\`
+```
 app/
 ├── components/
 │   ├── About.jsx
@@ -46,7 +46,7 @@ app/
 ├── globals.css
 ├── layout.js
 └── page.js
-\`\`\`
+```
 
 ## Customization
 
