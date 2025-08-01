@@ -1,23 +1,30 @@
-"use client"
+'use client'
 
-import { motion, useScroll, useTransform } from "framer-motion"
-import { useRef } from "react"
-import { ChevronDown, Github, Linkedin, Mail } from "lucide-react"
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { useRef } from 'react'
+import { ChevronDown, Download, Github, Linkedin, Mail } from 'lucide-react'
 
 const Hero = () => {
   const ref = useRef(null)
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start start", "end start"],
+    offset: ['start start', 'end start'],
   })
 
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"])
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%'])
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0])
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.8])
 
   return (
-    <section id="home" ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <motion.div style={{ y, opacity, scale }} className="text-center z-10 px-4">
+    <section
+      id="home"
+      ref={ref}
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+    >
+      <motion.div
+        style={{ y, opacity, scale }}
+        className="text-center z-10 px-4"
+      >
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -46,18 +53,42 @@ const Hero = () => {
           className="flex justify-center space-x-6 mb-12"
         >
           {[
-            { icon: Github, href: "#", label: "GitHub" },
-            { icon: Linkedin, href: "#", label: "LinkedIn" },
-            { icon: Mail, href: "mailto:shivamkumardev01@gmail.com", label: "Email" },
+            {
+              icon: Github,
+              href: 'https://github.com/SHIVAM-KUMAR-59',
+              label: 'GitHub',
+            },
+            {
+              icon: Linkedin,
+              href: 'https://www.linkedin.com/in/shivam-kumar-946614277/',
+              label: 'LinkedIn',
+            },
+            {
+              icon: Mail,
+              href: 'mailto:shivamkumardev01@gmail.com',
+              label: 'Email',
+            },
+            {
+              icon: Download,
+              href: '/resume.pdf',
+              label: 'Resume',
+              download: true,
+            },
           ].map((social, index) => (
             <motion.a
               key={social.label}
               href={social.href}
+              {...(social.download
+                ? { download: 'Shivam_Kumar_Resume.pdf' }
+                : {})}
               whileHover={{ scale: 1.2, rotate: 5 }}
               whileTap={{ scale: 0.9 }}
               className="p-3 bg-gray-900/50 backdrop-blur-sm rounded-full border border-gray-700/50 hover:border-blue-400/50 transition-all duration-300 hover:shadow-lg hover:shadow-blue-400/20"
             >
-              <social.icon size={24} className="text-gray-300 hover:text-blue-400 transition-colors" />
+              <social.icon
+                size={24}
+                className="text-gray-300 hover:text-blue-400 transition-colors"
+              />
             </motion.a>
           ))}
         </motion.div>
@@ -102,8 +133,14 @@ const Hero = () => {
             key={i}
             className="absolute w-1 h-1 bg-blue-400/20 rounded-full"
             initial={{
-              x: typeof window !== "undefined" ? Math.random() * window.innerWidth : Math.random() * 1000,
-              y: typeof window !== "undefined" ? Math.random() * window.innerHeight : Math.random() * 1000,
+              x:
+                typeof window !== 'undefined'
+                  ? Math.random() * window.innerWidth
+                  : Math.random() * 1000,
+              y:
+                typeof window !== 'undefined'
+                  ? Math.random() * window.innerHeight
+                  : Math.random() * 1000,
             }}
             animate={{
               y: [null, Math.random() * -200, null],
@@ -113,7 +150,7 @@ const Hero = () => {
             transition={{
               duration: Math.random() * 15 + 10,
               repeat: Number.POSITIVE_INFINITY,
-              repeatType: "reverse",
+              repeatType: 'reverse',
             }}
           />
         ))}
@@ -123,12 +160,20 @@ const Hero = () => {
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
           animate={{ rotate: 360 }}
-          transition={{ duration: 50, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+          transition={{
+            duration: 50,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: 'linear',
+          }}
           className="absolute top-1/4 left-1/4 w-64 h-64 border border-blue-400/10 rounded-full"
         />
         <motion.div
           animate={{ rotate: -360 }}
-          transition={{ duration: 40, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+          transition={{
+            duration: 40,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: 'linear',
+          }}
           className="absolute bottom-1/4 right-1/4 w-48 h-48 border border-cyan-400/10 rounded-full"
         />
       </div>
