@@ -10,6 +10,7 @@ import Projects from './components/Projects'
 import Contact from './components/Contact'
 import Navigation from './components/Navigation'
 
+// Home page
 export default function Home() {
   const containerRef = useRef(null)
   const { scrollYProgress } = useScroll({
