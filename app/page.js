@@ -21,6 +21,7 @@ export default function Home() {
   const backgroundY2 = useTransform(scrollYProgress, [0, 1], ['0%', '-50%'])
   const backgroundY3 = useTransform(scrollYProgress, [0, 1], ['0%', '25%'])
 
+  // home
   return (
     <div
       ref={containerRef}
