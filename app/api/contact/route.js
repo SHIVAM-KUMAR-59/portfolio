@@ -1,4 +1,6 @@
-import nodemailer from 'nodemailer'
+import { Resend } from 'resend'
+
+const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function POST(req) {
   try {
@@ -10,22 +12,13 @@ export async function POST(req) {
         { status: 400 },
       )
     }
+
     console.log(name, email, message)
 
-    // Transporter configuration
-    const transporter = nodemailer.createTransport({
-      service: 'Gmail', // You can use any SMTP provider
-      auth: {
-        user: process.env.EMAIL_USER, // Your Gmail
-        pass: process.env.EMAIL_PASS, // App password (not Gmail password)
-      },
-    })
-
-    // Email content
-    await transporter.sendMail({
-      from: `"Portfolio Contact" <${process.env.EMAIL_USER}>`,
-      to: 'shivamkumardev01@gmail.com', // Your email
-      subject: `New Contact Message from ${name}`,
+    await resend.emails.send({
+      from: 'Portfolio <shivamkumar.work>',
+      to: ['shivamkumardev01@gmail.com'],
+      subject: `New Portfolio Message from ${name}`,
       html: `
         <h3>New Contact Form Submission</h3>
         <p><strong>Name:</strong> ${name}</p>
@@ -40,6 +33,7 @@ export async function POST(req) {
     )
   } catch (error) {
     console.error('Email sending error:', error)
+
     return new Response(JSON.stringify({ error: 'Error sending email' }), {
       status: 500,
     })
