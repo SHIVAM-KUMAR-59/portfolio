@@ -43,7 +43,7 @@ const Footer = () => {
 
           {/* Resume Download */}
           <motion.a
-            href="/resume.pdf"   // put file inside /public
+            href="/resume.pdf"
             download
             className="text-[8px] tracking-[0.32em] uppercase text-white/18 hover:text-white/65 transition-colors relative group"
             whileHover={{ y: -1 }}
