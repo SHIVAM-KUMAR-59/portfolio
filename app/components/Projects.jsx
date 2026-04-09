@@ -15,8 +15,8 @@ const PROJECTS = [
     tags: ["Next.js", "Socket.io", "Redis"],
     desc: "A high-performance real-time DSA contest platform designed for competitive programming at scale.",
     links: [
-      { label: "Live Demo", icon: "open_in_new", href: "https://codesprint.vercel.app" },
-      { label: "Source", icon: "terminal", href: "https://github.com/yourusername/codesprint" },
+      { label: "Live Demo", icon: "open_in_new", href: "https://codesprint-zeta.vercel.app" },
+      { label: "Source", icon: "terminal", href: "https://github.com/SHIVAM-KUMAR-59/codesprint" },
     ],
     image: "/codesprint.png",
   },
@@ -27,7 +27,7 @@ const PROJECTS = [
     desc: "Intelligent AI-driven journal platform utilizing state-of-the-art sentiment analysis for mental well-being.",
     links: [
       { label: "Live Demo", icon: "open_in_new", href: "https://soothmind.vercel.app" },
-      { label: "Source", icon: "terminal", href: "https://github.com/yourusername/soothmind" },
+      { label: "Source", icon: "terminal", href: "https://github.com/SHIVAM-KUMAR-59/sooth-mind" },
     ],
     image: "/soothmind.png",
   },
@@ -37,8 +37,8 @@ const PROJECTS = [
     tags: ["CRDT Algorithm", "Real-time Collaboration"],
     desc: "Real-time collaborative writing platform leveraging CRDT algorithms for seamless multi-user editing and version control.",
     links: [
-      { label: "Live Demo", icon: "open_in_new", href: "https://draftly.vercel.app" },
-      { label: "Source", icon: "terminal", href: "https://github.com/yourusername/draftly" },
+      { label: "Live Demo", icon: "open_in_new", href: "https://draftly.shivamkumar.work" },
+      { label: "Source", icon: "terminal", href: "https://github.com/SHIVAM-KUMAR-59/draftly" },
     ],
     image: "/draftly.png",
   },
@@ -48,8 +48,8 @@ const PROJECTS = [
     tags: ["OAuth 2.0", "JWT"],
     desc: "A secure and scalable authentication framework implementing OAuth 2.0 and JWT for seamless user management across applications.",
     links: [
-      { label: "Live Demo", icon: "open_in_new", href: "https://authkit.vercel.app" },
-      { label: "Source", icon: "terminal", href: "https://github.com/yourusername/authkit" },
+      { label: "Live Demo", icon: "open_in_new", href: "https://authkit.shivamkumar.work" },
+      { label: "Source", icon: "terminal", href: "https://github.com/SHIVAM-KUMAR-59/authkit" },
     ],
     image: "/authkit.png",
   },
