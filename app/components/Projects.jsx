@@ -14,18 +14,44 @@ const PROJECTS = [
     title: "CODESPRINT",
     tags: ["Next.js", "Socket.io", "Redis"],
     desc: "A high-performance real-time DSA contest platform designed for competitive programming at scale.",
-    action: "SOURCE",
-    icon: "terminal",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCn2vFEt3JRarl_jiZJFLxPpLvbOjgSMf4kEXLQdBLkZXKmX70a0eIAZiaoAwil6qwpI6cnADV3mqDe4U9CDpZMUPxHRpg6hEH67VUOgPfZB678D7r8Ze03jvVtgWqdxVih_ezsZKagC5puG9nRAPv8-2CMY30T_u1qsqF_wc86fo8SDOU0aw40vvSV0kpDh23L8d-Ea5CjAAvlebzlkRvNz0j-j09bEXh5-uRIS_nvQSeZWBN6mQOTsJUMQag0EtJan9vR2FevmH_Z",
+    links: [
+      { label: "Live Demo", icon: "open_in_new", href: "https://codesprint.vercel.app" },
+      { label: "Source", icon: "terminal", href: "https://github.com/yourusername/codesprint" },
+    ],
+    image: "/codesprint.png",
   },
   {
     id: "02",
     title: "SOOTH MIND",
     tags: ["Hugging Face API", "NLP"],
     desc: "Intelligent AI-driven journal platform utilizing state-of-the-art sentiment analysis for mental well-being.",
-    action: "CASE STUDY",
-    icon: "auto_awesome",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAvSFBu786kgu0KpdouEjNXzg8l9QCDbvz3asvLzzgHGR_Eg0guoS7dyLLaB4L2SEJbpL17WYXmyBh8QaVL8MnjnNl8c_DhlrTIPl5A_7vGVyV_8y8MGTIuaJAXcC77-nXyc9KjuBzKCfmuGBVhbAHedLI0lsNm-dK783rbbXkSCmo8ZiuK1iSRSylYYY3IaMO_rrb-GK4gronUKqy3Yd0T8OOAD3f9S2IZ07xv_FfbpPxgDEPdF7kEvEhVGifav8ymUwRbHk0ZQeJe",
+    links: [
+      { label: "Live Demo", icon: "open_in_new", href: "https://soothmind.vercel.app" },
+      { label: "Source", icon: "terminal", href: "https://github.com/yourusername/soothmind" },
+    ],
+    image: "/soothmind.png",
+  },
+  {
+    id: "03",
+    title: "DRAFTLY",
+    tags: ["CRDT Algorithm", "Real-time Collaboration"],
+    desc: "Real-time collaborative writing platform leveraging CRDT algorithms for seamless multi-user editing and version control.",
+    links: [
+      { label: "Live Demo", icon: "open_in_new", href: "https://draftly.vercel.app" },
+      { label: "Source", icon: "terminal", href: "https://github.com/yourusername/draftly" },
+    ],
+    image: "/draftly.png",
+  },
+  {
+    id: "04",
+    title: "AUTHKIT",
+    tags: ["OAuth 2.0", "JWT"],
+    desc: "A secure and scalable authentication framework implementing OAuth 2.0 and JWT for seamless user management across applications.",
+    links: [
+      { label: "Live Demo", icon: "open_in_new", href: "https://authkit.vercel.app" },
+      { label: "Source", icon: "terminal", href: "https://github.com/yourusername/authkit" },
+    ],
+    image: "/authkit.png",
   },
 ];
 
