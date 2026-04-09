@@ -1,61 +1,75 @@
-'use client'
+"use client";
 
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef } from 'react'
-import Hero from './components/Hero'
-import About from './components/About'
-import Skills from './components/Skills'
-import Experience from './components/Experience'
-import Projects from './components/Projects'
-import Contact from './components/Contact'
-import Navigation from './components/Navigation'
+import { useRef } from "react";
+import {
+  motion,
+  useInView,
+} from "framer-motion";
+import ScrollProgress from "./components/ScrollProgress"
+import Cursor from "./components/Cursor"
+import HeroSection from "./components/Hero"
+import AboutSection from "./components/About"
+import ProjectsSection from "./components/Projects"
+import ContactSection from "./components/Contact"
+import Footer from "./components/Footer"
+import Nav from "./components/Navigation"
+import Ticker from "./components/Ticker"
+import SectionDivider from "./components/SectionDivider"
 
-// home
-export default function Home() {
-  const containerRef = useRef(null)
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start start', 'end end'],
-  })
-
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '50%'])
-  const backgroundY2 = useTransform(scrollYProgress, [0, 1], ['0%', '-50%'])
-  const backgroundY3 = useTransform(scrollYProgress, [0, 1], ['0%', '25%'])
-
-  // home
+// ─── Noise texture overlay ────────────────────────────────────────────────────
+function NoiseOverlay() {
   return (
     <div
-      ref={containerRef}
-      className="relative min-h-screen bg-black text-white overflow-x-hidden"
-    >
-      {/* Multiple animated background layers */}
-      <motion.div className="fixed inset-0 z-0" style={{ y: backgroundY }}>
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-950 via-black to-gray-900" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-blue-900/10 via-transparent to-transparent" />
-      </motion.div>
+      className="fixed inset-0 pointer-events-none z-[999] opacity-[0.035] mix-blend-overlay"
+      style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E")`,
+        backgroundSize: "128px 128px",
+      }}
+    />
+  );
+}
 
-      <motion.div className="fixed inset-0 z-0" style={{ y: backgroundY2 }}>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-cyan-900/10 via-transparent to-transparent" />
-        <div
-          className="absolute inset-0 bg-[conic-gradient(from_0deg_at_50%_50%,_transparent_0deg,_rgb(6_182_212_/_0.1)_60deg,_transparent_120deg)] animate-spin"
-          style={{ animationDuration: '60s' }}
-        />
-      </motion.div>
-
-      <motion.div className="fixed inset-0 z-0" style={{ y: backgroundY3 }}>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-slate-800/5 via-transparent to-transparent" />
-      </motion.div>
-
-      <Navigation />
-
-      <main className="relative z-10">
-        <Hero />
-        <About />
-        <Skills />
-        <Experience />
-        <Projects />
-        <Contact />
-      </main>
+// ─── Inter-section reveal wipe ────────────────────────────────────────────────
+function SectionWipe({ color = "#0c0c0c" }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-15%" });
+  return (
+    <div ref={ref} className="relative h-20 overflow-hidden" style={{ background: color }}>
+      <motion.div
+        className="absolute inset-0"
+        style={{ background: "#0e0e0e" }}
+        initial={{ scaleY: 1 }}
+        animate={inView ? { scaleY: 0 } : {}}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        style2={{ transformOrigin: "bottom" }}
+      />
     </div>
-  )
+  );
+}
+
+// ─── Root ─────────────────────────────────────────────────────────────────────
+export default function Hero() {
+  return (
+    <div
+      className="bg-[#0e0e0e] text-white min-h-screen overflow-x-hidden"
+      style={{ fontFamily: "'Inter', sans-serif" }}
+    >
+      <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+      <NoiseOverlay />
+      <ScrollProgress />
+      <Cursor />
+      <Nav />
+      <main>
+        <HeroSection />
+        <Ticker />
+        <SectionDivider />
+        <AboutSection />
+        <SectionDivider />
+        <ProjectsSection />
+        <SectionDivider />
+        <ContactSection />
+      </main>
+      <Footer />
+    </div>
+  );
 }

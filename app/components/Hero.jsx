@@ -1,184 +1,226 @@
 'use client'
 
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef } from 'react'
-import { ChevronDown, Download, Github, Linkedin, Mail } from 'lucide-react'
+import { useRef, useEffect } from 'react'
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useSpring,
+  useMotionValue,
+} from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import MagneticButton from "./MagneticButton";
 
 const Hero = () => {
-  const ref = useRef(null)
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start start', 'end start'],
-  })
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
 
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%'])
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0])
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.8])
+  const titleY = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  const subtitleY = useTransform(scrollYProgress, [0, 1], [0, 140]);
+  const bgY = useTransform(scrollYProgress, [0, 1], [0, 80]);
+  const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.88]);
+
+  // Mouse parallax
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const orb1X = useSpring(useTransform(mouseX, [-1, 1], [-30, 30]), { stiffness: 60, damping: 20 });
+  const orb1Y = useSpring(useTransform(mouseY, [-1, 1], [-20, 20]), { stiffness: 60, damping: 20 });
+  const orb2X = useSpring(useTransform(mouseX, [-1, 1], [20, -20]), { stiffness: 40, damping: 15 });
+  const orb2Y = useSpring(useTransform(mouseY, [-1, 1], [15, -15]), { stiffness: 40, damping: 15 });
+
+  useEffect(() => {
+    const handleMouse = (e) => {
+      mouseX.set((e.clientX / window.innerWidth) * 2 - 1);
+      mouseY.set((e.clientY / window.innerHeight) * 2 - 1);
+    };
+    window.addEventListener("mousemove", handleMouse);
+    return () => window.removeEventListener("mousemove", handleMouse);
+  }, [mouseX, mouseY]);
+
+  const titleWords = ["SCALABLE", "DIGITAL", "SYSTEMS"];
 
   return (
-    <section
-      id="home"
+    <motion.section
       ref={ref}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-24 overflow-hidden"
+      style={{ opacity }}
     >
+      {/* Ambient orbs — mouse-tracked parallax */}
       <motion.div
-        style={{ y, opacity, scale }}
-        className="text-center z-10 px-4"
-      >
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mb-8"
-        >
-          <h1 className="text-5xl md:text-7xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400 bg-clip-text text-transparent">
-              Shivam Kumar
-            </span>
-          </h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl md:text-2xl text-gray-300 mb-8"
-          >
-            Full-Stack Developer & Problem Solver
-          </motion.p>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="flex justify-center space-x-6 mb-12"
-        >
-          {[
-            {
-              icon: Github,
-              href: 'https://github.com/SHIVAM-KUMAR-59',
-              label: 'GitHub',
-            },
-            {
-              icon: Linkedin,
-              href: 'https://www.linkedin.com/in/shivam-kumar-946614277/',
-              label: 'LinkedIn',
-            },
-            {
-              icon: Mail,
-              href: 'mailto:shivamkumardev01@gmail.com',
-              label: 'Email',
-            },
-            {
-              icon: Download,
-              href: '/resume.pdf',
-              label: 'Resume',
-              download: true,
-            },
-          ].map((social, index) => (
-            <motion.a
-              key={social.label}
-              href={social.href}
-              {...(social.download
-                ? { download: 'Shivam_Kumar_Resume.pdf' }
-                : {})}
-              whileHover={{ scale: 1.2, rotate: 5 }}
-              whileTap={{ scale: 0.9 }}
-              className="p-3 bg-gray-900/50 backdrop-blur-sm rounded-full border border-gray-700/50 hover:border-blue-400/50 transition-all duration-300 hover:shadow-lg hover:shadow-blue-400/20"
-            >
-              <social.icon
-                size={24}
-                className="text-gray-300 hover:text-blue-400 transition-colors"
-              />
-            </motion.a>
-          ))}
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center"
-        >
-          <motion.a
-            href="#projects"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-8 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full text-white font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300"
-          >
-            View My Work
-          </motion.a>
-          <motion.a
-            href="#contact"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-8 py-3 border border-gray-600/50 rounded-full text-gray-300 hover:border-blue-400/50 hover:text-white transition-all duration-300"
-          >
-            Get In Touch
-          </motion.a>
-        </motion.div>
-      </motion.div>
-
+        className="absolute top-[-20%] left-[-15%] w-[75vw] h-[75vw] rounded-full pointer-events-none"
+        style={{
+          background: "radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 68%)",
+          x: orb1X,
+          y: useTransform(scrollYProgress, [0, 1], [0, -80]),
+        }}
+        animate={{ scale: [1, 1.08, 1] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+      />
       <motion.div
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-      >
-        <ChevronDown size={32} className="text-gray-400" />
-      </motion.div>
+        className="absolute bottom-[-15%] right-[-8%] w-[50vw] h-[50vw] rounded-full pointer-events-none"
+        style={{
+          background: "radial-gradient(circle, rgba(255,255,255,0.035) 0%, transparent 68%)",
+          x: orb2X,
+          y: orb2Y,
+        }}
+        animate={{ scale: [1.08, 1, 1.08] }}
+        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut", delay: 3 }}
+      />
 
-      {/* Enhanced floating particles */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(30)].map((_, i) => (
+      {/* Grid lines */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none overflow-hidden"
+        style={{ opacity: useTransform(scrollYProgress, [0, 0.6], [0.04, 0]) }}
+      >
+        {Array.from({ length: 6 }).map((_, i) => (
           <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-blue-400/20 rounded-full"
-            initial={{
-              x:
-                typeof window !== 'undefined'
-                  ? Math.random() * window.innerWidth
-                  : Math.random() * 1000,
-              y:
-                typeof window !== 'undefined'
-                  ? Math.random() * window.innerHeight
-                  : Math.random() * 1000,
-            }}
-            animate={{
-              y: [null, Math.random() * -200, null],
-              x: [null, Math.random() * 200 - 100, null],
-              opacity: [0.2, 0.8, 0.2],
-            }}
-            transition={{
-              duration: Math.random() * 15 + 10,
-              repeat: Number.POSITIVE_INFINITY,
-              repeatType: 'reverse',
-            }}
+            key={`v${i}`}
+            className="absolute top-0 bottom-0 border-r border-white"
+            style={{ left: `${(i + 1) * (100 / 7)}%` }}
+            initial={{ scaleY: 0, opacity: 0 }}
+            animate={{ scaleY: 1, opacity: 1 }}
+            transition={{ delay: 0.2 + i * 0.07, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
           />
         ))}
-      </div>
+        {Array.from({ length: 3 }).map((_, i) => (
+          <motion.div
+            key={`h${i}`}
+            className="absolute left-0 right-0 border-b border-white"
+            style={{ top: `${(i + 1) * 25}%` }}
+            initial={{ scaleX: 0, opacity: 0 }}
+            animate={{ scaleX: 1, opacity: 1 }}
+            transition={{ delay: 0.4 + i * 0.1, duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+          />
+        ))}
+      </motion.div>
 
-      {/* Geometric background elements */}
-      <div className="absolute inset-0 overflow-hidden">
+      {/* Corner brackets */}
+      {[
+        { top: "10%", left: "4%", rotate: "0deg" },
+        { top: "10%", right: "4%", rotate: "90deg" },
+        { bottom: "10%", left: "4%", rotate: "-90deg" },
+        { bottom: "10%", right: "4%", rotate: "180deg" },
+      ].map((pos, i) => (
         <motion.div
-          animate={{ rotate: 360 }}
-          transition={{
-            duration: 50,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: 'linear',
-          }}
-          className="absolute top-1/4 left-1/4 w-64 h-64 border border-blue-400/10 rounded-full"
-        />
+          key={i}
+          className="absolute hidden lg:block pointer-events-none"
+          style={{ ...pos, rotate: pos.rotate }}
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 0.12, scale: 1 }}
+          transition={{ delay: 1.5 + i * 0.1, duration: 0.8 }}
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M0 10 L0 0 L10 0" stroke="white" strokeWidth="1.5" />
+          </svg>
+        </motion.div>
+      ))}
+
+      <motion.div
+        className="max-w-screen-2xl w-full mx-auto text-center relative z-10"
+        style={{ y: titleY, scale }}
+      >
+        {/* Eyebrow */}
         <motion.div
-          animate={{ rotate: -360 }}
-          transition={{
-            duration: 40,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: 'linear',
-          }}
-          className="absolute bottom-1/4 right-1/4 w-48 h-48 border border-cyan-400/10 rounded-full"
+          className="flex items-center justify-center gap-4 mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.2 }}
+        >
+          <motion.span
+            className="block w-10 h-px bg-white/20"
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ delay: 0.5, duration: 0.6 }}
+          />
+          <p className="text-[9px] uppercase tracking-[0.55em] text-white/30">
+            Full Stack Software Developer
+          </p>
+          <motion.span
+            className="block w-10 h-px bg-white/20"
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ delay: 0.5, duration: 0.6 }}
+          />
+        </motion.div>
+
+        {/* Main title — per-letter stagger */}
+        <div className="overflow-hidden mb-8">
+          {titleWords.map((word, wi) => (
+            <div key={word} className="overflow-hidden">
+              <motion.div
+                initial={{ y: "115%", skewY: 4 }}
+                animate={{ y: 0, skewY: 0 }}
+                transition={{ duration: 1.0, delay: 0.3 + wi * 0.13, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <span
+                  className={`text-[clamp(3rem,11vw,9.5rem)] font-black tracking-[-0.04em] leading-[0.88] uppercase block ${wi === 2 ? "text-transparent" : "text-white"}`}
+                  style={wi === 2 ? { WebkitTextStroke: "1px rgba(255,255,255,0.22)" } : {}}
+                >
+                  {word}
+                </span>
+              </motion.div>
+            </div>
+          ))}
+        </div>
+
+        {/* Subtitle */}
+        <motion.p
+          className="text-white/28 text-sm md:text-base max-w-md mx-auto mb-14 leading-relaxed tracking-wide"
+          style={{ y: subtitleY }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.85 }}
+        >
+          Building high-performance architectures and modern web systems with Java, C++, Go, and Next.js.
+        </motion.p>
+
+        {/* CTA */}
+        <motion.div
+          className="flex flex-col sm:flex-row justify-center gap-4"
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 1.1 }}
+        >
+          <MagneticButton
+            href="#works"
+            className="group relative inline-flex items-center justify-center gap-3 bg-white text-black px-10 py-4 font-bold uppercase tracking-[0.2em] text-xs overflow-hidden cursor-pointer"
+          >
+            <motion.span
+              className="absolute inset-0 bg-white/75 origin-left"
+              initial={{ scaleX: 0 }}
+              whileHover={{ scaleX: 1 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            />
+            <span className="relative z-10">Selected Works</span>
+            <ArrowRight className="relative z-10 w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+          </MagneticButton>
+          <MagneticButton
+            href="#contact"
+            className="group inline-flex items-center justify-center gap-3 border border-white/12 text-white px-10 py-4 font-bold uppercase tracking-[0.2em] text-xs hover:border-white/35 hover:bg-white/[0.04] transition-all duration-300 cursor-pointer"
+          >
+            Contact Me
+          </MagneticButton>
+        </motion.div>
+      </motion.div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.8, duration: 0.9 }}
+      >
+        <span className="text-[8px] tracking-[0.55em] uppercase text-white/18">Scroll</span>
+        <motion.div
+          className="w-px h-16 bg-gradient-to-b from-white/35 to-transparent"
+          animate={{ scaleY: [1, 0.3, 1], opacity: [0.8, 0.2, 0.8] }}
+          transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+          style={{ transformOrigin: "top" }}
         />
-      </div>
-    </section>
-  )
+      </motion.div>
+    </motion.section>
+  );
 }
 
 export default Hero

@@ -1,131 +1,81 @@
 'use client'
 
-import { motion, useInView } from 'framer-motion'
+import {
+  motion,
+  useTransform,
+  useScroll
+} from "framer-motion";
 import { useRef } from 'react'
-import { ExternalLink, Github } from 'lucide-react'
+import ProjectCard from "./ProjectCard";
+
+const PROJECTS = [
+  {
+    id: "01",
+    title: "CODESPRINT",
+    tags: ["Next.js", "Socket.io", "Redis"],
+    desc: "A high-performance real-time DSA contest platform designed for competitive programming at scale.",
+    action: "SOURCE",
+    icon: "terminal",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCn2vFEt3JRarl_jiZJFLxPpLvbOjgSMf4kEXLQdBLkZXKmX70a0eIAZiaoAwil6qwpI6cnADV3mqDe4U9CDpZMUPxHRpg6hEH67VUOgPfZB678D7r8Ze03jvVtgWqdxVih_ezsZKagC5puG9nRAPv8-2CMY30T_u1qsqF_wc86fo8SDOU0aw40vvSV0kpDh23L8d-Ea5CjAAvlebzlkRvNz0j-j09bEXh5-uRIS_nvQSeZWBN6mQOTsJUMQag0EtJan9vR2FevmH_Z",
+  },
+  {
+    id: "02",
+    title: "SOOTH MIND",
+    tags: ["Hugging Face API", "NLP"],
+    desc: "Intelligent AI-driven journal platform utilizing state-of-the-art sentiment analysis for mental well-being.",
+    action: "CASE STUDY",
+    icon: "auto_awesome",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAvSFBu786kgu0KpdouEjNXzg8l9QCDbvz3asvLzzgHGR_Eg0guoS7dyLLaB4L2SEJbpL17WYXmyBh8QaVL8MnjnNl8c_DhlrTIPl5A_7vGVyV_8y8MGTIuaJAXcC77-nXyc9KjuBzKCfmuGBVhbAHedLI0lsNm-dK783rbbXkSCmo8ZiuK1iSRSylYYY3IaMO_rrb-GK4gronUKqy3Yd0T8OOAD3f9S2IZ07xv_FfbpPxgDEPdF7kEvEhVGifav8ymUwRbHk0ZQeJe",
+  },
+];
 
 const Projects = () => {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
-
-  const projects = [
-    {
-      title: 'AI Integrated Chat-bot',
-      description:
-        'Developed AI-driven chat application using Next.js, TypeScript, and Clerk authentication with real-time synchronization and sub-second response time optimization.',
-      tech: ['Next.js', 'TypeScript', 'Clerk', 'AI/ML'],
-      liveDemo:
-        'https://chat-bot-bwqh-1dz89nmxh-shivam-kumar-59s-projects.vercel.app',
-      github: 'https://github.com/SHIVAM-KUMAR-59/Chat-Bot',
-      gradient: 'from-blue-400 to-blue-600',
-      bgGradient: 'from-blue-500/10 to-blue-600/10',
-    },
-    {
-      title: 'Sooth Mind',
-      description:
-        'Built a full-stack Mental Well-being Platform leveraging Next.js, MongoDB, and Hugging Face API to analyze journal entries and deliver personalized mental health insights.',
-      tech: ['Next.js', 'MongoDB', 'Hugging Face API', 'NextAuth', 'Recharts'],
-      liveDemo: 'https://sooth-mind.vercel.app/',
-      github: 'https://github.com/SHIVAM-KUMAR-59/sooth-mind',
-      gradient: 'from-cyan-400 to-cyan-600',
-      bgGradient: 'from-cyan-500/10 to-cyan-600/10',
-    },
-    {
-      title: 'Connect-Ups',
-      description:
-        'Created startup showcase platform using Next.js, TypeScript, and Sanity CMS. Improved user engagement by 40% through intuitive UI/UX design and responsive layout.',
-      tech: ['Next.js', 'TypeScript', 'Sanity CMS', 'UI/UX'],
-      liveDemo: 'https://connect-ups.vercel.app/',
-      github: 'https://github.com/SHIVAM-KUMAR-59/Connect-Ups',
-      gradient: 'from-teal-400 to-teal-600',
-      bgGradient: 'from-teal-500/10 to-teal-600/10',
-    },
-  ]
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const titleY = useTransform(scrollYProgress, [0.05, 0.4], [70, 0]);
+  const titleOpacity = useTransform(scrollYProgress, [0.05, 0.25], [0, 1]);
 
   return (
-    <section
-      id="projects"
-      ref={ref}
-      className="py-20 px-4 bg-gradient-to-b from-black/50 to-gray-950/50"
-    >
-      <div className="max-w-6xl mx-auto">
+    <section ref={ref} id="works" className="relative py-28 md:py-44 px-6 md:px-12 bg-[#0e0e0e]">
+      <div className="max-w-screen-2xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="flex flex-col md:flex-row justify-between items-end mb-20 md:mb-28 gap-6"
+          style={{ y: titleY, opacity: titleOpacity }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Featured{' '}
-            <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-              Projects
-            </span>
-          </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-cyan-400 mx-auto rounded-full" />
+          <div>
+            <motion.div
+              className="flex items-center gap-4 mb-6"
+              initial={{ opacity: 0, x: -16 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+            >
+              <span className="text-[8px] tracking-[0.5em] text-white/20 uppercase">02 — Works</span>
+              <motion.div className="h-px bg-white/10" initial={{ width: 0 }} whileInView={{ width: 48 }} viewport={{ once: true }} transition={{ delay: 0.3, duration: 0.8 }} />
+            </motion.div>
+            <div className="overflow-hidden">
+              <motion.h2
+                className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter uppercase text-white leading-none"
+                initial={{ y: "100%", skewY: 2 }}
+                whileInView={{ y: 0, skewY: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
+              >
+                FEATURED<br />PROJECTS
+              </motion.h2>
+            </div>
+          </div>
+          <span className="text-[8px] tracking-[0.38em] uppercase text-white/18 self-end pb-2">[ ENGINEERING REPO ]</span>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.title}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
-              whileHover={{ y: -10, scale: 1.02 }}
-              className={`group bg-gradient-to-br ${project.bgGradient} backdrop-blur-sm rounded-xl border border-gray-800/50 hover:border-gray-700/50 transition-all duration-300 overflow-hidden hover:shadow-xl hover:shadow-blue-500/10`}
-            >
-              <div className="p-6">
-                <div
-                  className={`w-full h-2 bg-gradient-to-r ${project.gradient} rounded-full mb-6`}
-                />
-
-                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-300 transition-colors">
-                  {project.title}
-                </h3>
-
-                <p className="text-gray-300 text-sm leading-relaxed mb-4 group-hover:text-gray-200 transition-colors">
-                  {project.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.tech.map((tech, techIndex) => (
-                    <span
-                      key={techIndex}
-                      className="px-3 py-1 bg-gray-800/50 text-gray-300 text-xs rounded-full border border-gray-700/50 group-hover:border-gray-600/50 transition-colors"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="flex space-x-4">
-                  <motion.a
-                    href={project.liveDemo}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={`flex items-center space-x-2 px-4 py-2 bg-gradient-to-r ${project.gradient} rounded-lg text-white text-sm font-medium hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300`}
-                  >
-                    <ExternalLink size={16} />
-                    <span>Live Demo</span>
-                  </motion.a>
-
-                  <motion.a
-                    href={project.github}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="flex items-center space-x-2 px-4 py-2 border border-gray-700/50 rounded-lg text-gray-300 text-sm font-medium hover:border-blue-400/50 hover:text-white transition-all duration-300"
-                  >
-                    <Github size={16} />
-                    <span>Code</span>
-                  </motion.a>
-                </div>
-              </div>
-            </motion.div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10">
+          {PROJECTS.map((project, i) => (
+            <ProjectCard key={project.id} project={project} index={i} />
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 export default Projects
