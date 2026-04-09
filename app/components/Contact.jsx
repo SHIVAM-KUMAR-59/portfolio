@@ -455,7 +455,7 @@ const Contact = () => {
                 />
 
                 <AnimatePresence mode="wait">
-                  {!loading ? (
+                  {loading ? (
                     <motion.span
                       key="loading"
                       initial={{ opacity: 0, y: 8 }}
