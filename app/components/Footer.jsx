@@ -12,7 +12,7 @@ const Footer = () => {
       <div className="flex flex-col md:flex-row justify-between items-center gap-8 px-6 md:px-12 max-w-screen-2xl mx-auto">
         
         <span className="text-[8px] tracking-[0.38em] uppercase text-white/18">
-          © 2024 SHIVAM KUMAR — SYSTEMS ENGINEER
+          © 2026 SHIVAM KUMAR — SYSTEMS ENGINEER
         </span>
 
         <div className="flex gap-10">
